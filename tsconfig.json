@@ -34,11 +34,29 @@
       "@/*": [
         "./src/*"
       ],
+      "@db/*": [
+        "./src/server/db/*"
+      ],
+      "@db": [
+        "./src/server/db/exports"
+      ],
+      "@server/*": [
+        "./src/server/*"
+      ],
+      "@server": [
+        "./src/server/exports"
+      ],
       "@styles": [
         "./src/styles/exports.ts"
       ],
       "@styles/*": [
         "./src/styles/*"
+      ],
+      "@types/*": [
+        "./src/types/*"
+      ],
+      "@types": [
+        "./src/types/exports"
       ],
     }
   },
