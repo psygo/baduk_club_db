@@ -33,3 +33,4 @@ DATABASE_URL=
 - [Baduk Club](https://baduk.club)
 - [AGAGD on Github](https://github.com/usgo/agagd/tree/main)
 - [AGA Ratings Program](https://github.com/Fraze/AGA-Ratings-Program/)
+- [EGF's EGD References](https://www.europeangodatabase.eu/EGD/EGF_rating_system.php#References)

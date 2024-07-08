@@ -1,6 +1,7 @@
 import { relations, sql } from "drizzle-orm"
 import {
   boolean,
+  date,
   index,
   integer,
   pgTableCreator,
@@ -67,7 +68,7 @@ export const games = createTable("games", {
   ...idCols(),
   ...dateTimeCols(),
   ...imageUrlCol(),
-  gameDate: varchar("game_date"),
+  gameDate: date("game_date"),
   round: varchar("round"),
   komi: integer("komi"),
   result: varchar("result"),
