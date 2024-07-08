@@ -58,6 +58,12 @@
       "@types": [
         "./src/types/exports"
       ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@utils": [
+        "./src/utils/exports"
+      ],
     }
   },
   "include": [

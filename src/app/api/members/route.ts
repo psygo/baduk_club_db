@@ -12,9 +12,7 @@ export async function POST(req: Request) {
 
     const memberInsertData = await db
       .insert(members)
-      .values({
-        ...memberData,
-      })
+      .values(memberData)
       .returning()
 
     return NextResponse.json(memberInsertData)

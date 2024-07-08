@@ -12,9 +12,7 @@ export async function POST(req: Request) {
 
     const tournamentInsertData = await db
       .insert(tournaments)
-      .values({
-        ...tournamentData,
-      })
+      .values(tournamentData)
       .returning()
 
     return NextResponse.json(tournamentInsertData)

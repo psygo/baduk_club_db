@@ -1,9 +1,59 @@
+import { desc, eq, or } from "drizzle-orm"
+
 import { NextResponse } from "next/server"
+
+import "@utils/array"
 
 import { db, games } from "@db"
 
-import { gameInsertSchema } from "@types"
-import { desc, eq, or } from "drizzle-orm"
+import {
+  gameInsertSchema,
+  type NumberId,
+  type SelectGame,
+} from "@types"
+
+async function getLastGameFromPlayer(playerId: NumberId) {
+  const playerLastGames = await db
+    .select()
+    .from(games)
+    .where(
+      or(
+        eq(games.blackId, playerId),
+        eq(games.whiteId, playerId),
+      ),
+    )
+    .orderBy(desc(games.createdAt))
+    .limit(1)
+  const playerLastGame = playerLastGames.first()
+
+  return playerLastGame
+}
+
+function getPlayerRating(
+  playerId: NumberId,
+  game: SelectGame,
+) {
+  return playerId === game.blackId
+    ? game.blackRating
+    : game.whiteRating
+}
+
+function calculateNewRatings(
+  blackRating: number,
+  whiteRating: number,
+  result: string,
+) {
+  const blackWins = result?.includes("B")
+
+  return {
+    newBlackRating: blackWins
+      ? blackRating + 10
+      : blackRating - 10,
+    newWhiteRating: blackWins
+      ? whiteRating + 10
+      : whiteRating - 10,
+  }
+}
 
 export async function POST(req: Request) {
   try {
@@ -16,21 +66,37 @@ export async function POST(req: Request) {
 
     // 1. Take the last game's ratings of each player
 
-    const lastBlackGame = await db
-      .select()
-      .from(games)
-      .where(
-        or(
-          eq(games.blackId, blackId),
-          eq(games.whiteId, blackId),
-        ),
+    const lastBlackGame =
+      await getLastGameFromPlayer(blackId)
+    const lastWhiteGame =
+      await getLastGameFromPlayer(whiteId)
+
+    const lastBlackRating = getPlayerRating(
+      blackId,
+      lastBlackGame,
+    )
+    const lastWhiteRating = getPlayerRating(
+      blackId,
+      lastWhiteGame,
+    )
+
+    // 2. Calculate the New Ratings
+
+    const { newBlackRating, newWhiteRating } =
+      calculateNewRatings(
+        lastBlackRating,
+        lastWhiteRating,
+        gameData.result,
       )
-      .orderBy(desc(games.createdAt))
+
+    // 3. Create the Game
 
     const gameInsertData = await db
       .insert(games)
       .values({
         ...gameData,
+        blackRating: newBlackRating,
+        whiteRating: newWhiteRating,
       })
       .returning()
 
