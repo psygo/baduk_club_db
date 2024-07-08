@@ -25,3 +25,15 @@ content-type: application/json
 GET {{API}}/members
 
 #-----------------------------------------------------------
+# 2. Tournaments
+
+### 2.1. Create a Tournament
+
+POST {{API}}/members
+content-type: application/json
+
+{
+    "name": "Chicago Open"
+}
+
+#-----------------------------------------------------------

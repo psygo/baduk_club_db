@@ -1,14 +1,8 @@
-import { z } from "zod"
-
 import { NextResponse } from "next/server"
 
 import { db, members } from "@db"
 
-const memberInsertSchema = z.object({
-  email: z.string().email(),
-  first_name: z.string().optional(),
-  last_name: z.string().optional(),
-})
+import { memberInsertSchema } from "@types"
 
 export async function POST(req: Request) {
   try {

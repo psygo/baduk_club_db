@@ -55,7 +55,7 @@ export const tournaments = createTable("tournaments", {
   ...idCols(),
   ...dateTimeCols(),
   ...imageUrlCol(),
-  name: varchar("name"),
+  name: varchar("name").notNull(),
   description: varchar("description"),
   date: varchar("date"),
   city: varchar("city"),
