@@ -29,11 +29,31 @@ GET {{API}}/members
 
 ### 2.1. Create a Tournament
 
-POST {{API}}/members
+POST {{API}}/tournaments
 content-type: application/json
 
 {
     "name": "Chicago Open"
 }
+
+### 2.2. Select All Tournaments
+
+GET {{API}}/tournaments
+
+#-----------------------------------------------------------
+# 3. Games
+
+### 3.1. Create a Game
+
+POST {{API}}/games
+content-type: application/json
+
+{
+    "komi": 6.5
+}
+
+### 3.2. Select All Games
+
+GET {{API}}/games
 
 #-----------------------------------------------------------
