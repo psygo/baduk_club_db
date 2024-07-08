@@ -28,3 +28,13 @@ export async function POST(req: Request) {
     console.error(e)
   }
 }
+
+export async function GET() {
+  try {
+    const memberSelectData = await db.select().from(members)
+
+    return NextResponse.json(memberSelectData)
+  } catch (e) {
+    console.error(e)
+  }
+}

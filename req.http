@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# 0. Local Envs
+
+@PORT=3000
+@HOSTNAME=http://localhost
+@HOST=http://localhost:{{PORT}}
+@API={{HOST}}/api
+
+#-----------------------------------------------------------
+# 1. Members
+
+### 1.1. Create a Member
+
+POST {{API}}/members
+content-type: application/json
+
+{
+    "email": "philippefanaro@gmail.com",
+    "first_name": "Philippe",
+    "last_name": "Fanaro"
+}
+
+### 1.2. Select All Members
+
+GET {{API}}/members
+
+#-----------------------------------------------------------
