@@ -1,6 +1,8 @@
-import { sql } from "drizzle-orm"
+import { relations, sql } from "drizzle-orm"
 import {
+  boolean,
   index,
+  integer,
   pgTableCreator,
   serial,
   timestamp,
@@ -30,21 +32,70 @@ function dateTimeCols() {
 
 function imageUrlCol() {
   return {
-    imageUrl: varchar("image_url", { length: 2_048 }),
+    imageUrl: varchar("image_url"),
   }
 }
 
-export const players = createTable(
-  "players",
+export const members = createTable(
+  "members",
   {
     ...idCols(),
-    email: varchar("email", { length: 256 })
-      .unique()
-      .notNull(),
     ...dateTimeCols(),
     ...imageUrlCol(),
+    email: varchar("email").unique().notNull(),
+    firstName: varchar("first_name"),
+    lastName: varchar("last_name"),
   },
   (table) => ({
     emailIdx: index("players_email_idx").on(table.email),
+  }),
+)
+
+export const tournaments = createTable("tournaments", {
+  ...idCols(),
+  ...dateTimeCols(),
+  ...imageUrlCol(),
+  name: varchar("name"),
+  description: varchar("description"),
+  date: varchar("date"),
+  city: varchar("city"),
+  state: varchar("state"),
+  country: varchar("country"),
+})
+
+export const games = createTable("games", {
+  ...idCols(),
+  ...dateTimeCols(),
+  ...imageUrlCol(),
+  gameDate: varchar("game_date"),
+  round: varchar("round"),
+  komi: integer("komi"),
+  result: varchar("result"),
+  sgf: varchar("sgf"),
+  online: boolean("online"),
+  exclude: boolean("exclude"),
+  rated: boolean("rated"),
+  blackId: integer("black_id").notNull(),
+  blackRating: integer("black_rating"),
+  whiteId: integer("white_id").notNull(),
+  whiteRating: integer("black_rating"),
+  tournamentId: integer("tournament_id"),
+})
+
+export const gamesRelations = relations(
+  games,
+  ({ one }) => ({
+    black: one(members, {
+      fields: [games.blackId],
+      references: [members.id],
+    }),
+    white: one(members, {
+      fields: [games.whiteId],
+      references: [members.id],
+    }),
+    tournament: one(tournaments, {
+      fields: [games.tournamentId],
+      references: [tournaments.id],
+    }),
   }),
 )
