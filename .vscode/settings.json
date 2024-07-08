@@ -1,0 +1,33 @@
+{
+    "files.exclude": {
+        "**/node_modules/": true,
+        ".next": true,
+        "next-env.d.ts": true,
+        "**/env.js": true,
+        ".eslintrc.cjs": true,
+        ".gitignore": true,
+        ".prettierrc": true,
+        "drizzle.config.ts": true,
+        "next.config.js": true,
+        "pnpm-lock.yaml": true,
+        "postcss.config.cjs": true,
+        "prettier.config.js": true,
+        "start-database.sh": true,
+        "components.json": true,
+        "tailwind.config.ts": true,
+        "package.json": true,
+        "tsconfig.json": true,
+        "README.md": true,
+        ".env": true,
+        "tasks.md": true,
+    },
+    "search.exclude": {
+        "tailwind.config.ts": false,
+        "package.json": false,
+        "tsconfig.json": false,
+        "README.md": false,
+        ".env": false,
+        "next.config.js": false,
+        "tasks.md": false,
+    }
+}
