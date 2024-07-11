@@ -33,6 +33,9 @@ DATABASE_URL=
 - [Baduk Club](https://baduk.club)
 - [AGAGD on Github](https://github.com/usgo/agagd/tree/main)
 - [AGA Ratings Program](https://github.com/Fraze/AGA-Ratings-Program/)
+  - [Paul Matthews - *Inside the AGA Ratings System*](https://www.usgo-archive.org/sites/default/files/pdf/AGARatings-Simple.pdf)
+  - [Philip Waldron - **](https://www.usgo-archive.org/sites/default/files/pdf/AGARatings-Math.pdf)
+  - [Jonathan Bresler is appointed as AGA Ratings VP](https://www.usgo-archive.org/news/2010/08/bresler-appointed-aga-ratings-vp/)
 - [EGF's EGD References](https://www.europeangodatabase.eu/EGD/EGF_rating_system.php#ReferencejGs)
 - Others
   - [dreamingsuntide - Are Elo Systems Overrated? Everything you wanted to know about Rating Systems](https://youtu.be/BT1mmikRils)
